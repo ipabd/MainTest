@@ -1,0 +1,40 @@
+version: '3.3'
+
+services:
+  web:
+    build: ./web
+    environment:
+    - APACHE_RUN_USER=www-data
+    volumes:
+    - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+    ports:
+    - 8098:80
+    working_dir:
+      '/var/www/html/'
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+    - 5432:5432
+    volumes:
+    - ${DB_PATH_HOST}:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+    - 6098:8080
+
+  composer:
+    image: composer:2.1
+    volumes:
+    - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+    working_dir:
+      '/var/www/html/'
+    command: composer self-update
+
+

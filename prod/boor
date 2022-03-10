@@ -1,0 +1,204 @@
+<div class="container">  по разные стороны развести
+		<div class="block clearfix">
+			<p class="pull-left">hello</p>
+			<p class="pull-right">world</p>
+		</div>
+	</div>
+
+
+<div class="container" style="padding-top: 40px" >
+    <div id="soo"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row row-flex row-flex-wrap" >
+                <div class="col-md-2 " style="background: #374050;">
+                    <table>
+                        <tr>
+                            <td ><p><img style="" src="/img/logo.png" alt="" class="img-fluid float-left"></p></td>
+                            <td style="width: 50px;
+height: 33px;font-size: 11px;padding-left: 15px;padding-top: 10px;
+line-height: 11px;color: #FFFFFF;"> Enterprise Resource Planning</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-10 " style="background: #FFFFFF; ">
+                    <div class="container">
+
+                        <p class="pull-left">hello</p>
+                        <p class="pull-right">world</p>
+
+                    </div>
+                </div>
+            </div>
+                @yield('content')
+        </div>
+    </div>
+</div>
+
+
+createdb.exe --username=postgres Laravel
+psql --dbname=Laravel --quiet --file="D:\сайт\dump.sql" --username=postgres >nul
+
+
+<script type="text/javascript">
+        var i = 0;
+        $("#add").click(function(){
+            ++i;
+            $("#dataTable").append(
+                '<tr id="tr'+i+'">' +
+                '<td>Название</td>' +
+                '<td>Значение</td>' +
+                '</tr>'
+                +
+                '<tr >' +
+                '<td><input type="text" name="DATA[COLOR'+i+']" ' +
+                ' class="form-control" /></td>' +
+                '<td><input type="text" name="DATA[SIZE'+i+']" ' +
+                ' class="form-control" /></td>' +
+                '<td><a type="button" data-i="'+i+'" id="del"><span class="glyphicon glyphicon-remove"></span></a></td>' +
+                '</tr>');
+        });
+        $(document).on('click', '#del', function(){
+            let n=$(this).data('i');
+            $(this).parents('tr').remove();
+            $('#tr'+n).remove();
+        });
+    </script>
+
+   в laravel 8 так return $this->belongsTo(Role::class,'permission_role')->get();
+
+   -------------oger
+   php artisan queue:table
+   создалась
+   C:\OpenServer\domains\zadan.loc\database\migrations\2022_03_06_083618_create_jobs_table.php
+   php artisan migrate
+
+И в настройках указать, что хранить очерёдность задач надо в базе данных.
+
+# .env
+QUEUE_CONNECTION=database
+
+# config/queue.php
+'default' => env('QUEUE_CONNECTION', 'sync'),
+
+
+
+Сначала надо создать код, который можно будет добавить в очередь.
+php artisan make:job SendEmail
+
+В результате будет создан файл app/Jobs/SendEmail.php.
+# app/Jobs/SendEmail.php
+class SendEmail implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    public function handle()
+    {
+        // Выполнить код
+    }
+}
+
+Теперь данный код можно добавить в очередь на выполнение через функцию dispatch().
+use App/Jobs/SendEmail;
+// Добавить выполнение кода в очередь
+$data = [
+    'lang' => 'PHP'
+];
+dispatch(new SendEmail($data));
+
+use Carbon\Carbon;
+// Выполнить код через 10 минут
+$job = (new SendEmail())->delay(Carbon::now()->addMinutes(10));
+dispatch($job);
+
+dispatch(function () {
+    Mail::to('john@example.com')->send(new WelcomeMessage);
+})->afterResponse();
+
+// Эта задача отправлена в очередь по умолчанию...
+dispatch(new Job);
+
+// Эта задача отправлена в очередь "emails"...
+dispatch((new Job)->onQueue('emails'));
+
+
+Route::get('/job', function () {
+  dispatch(new App\Jobs\PerformTask);
+  return 'Готово!';
+});
+
+
+Например, давайте укажем, что задача станет доступной для обработки через 10 минут после отправки в очередь:
+
+PHP
+<?php
+
+namespace App\Http\Controllers;
+
+use Carbon\Carbon;
+use App\Jobs\ProcessPodcast;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class PodcastController extends Controller
+{
+  /**
+   * Сохранить новый подкаст.
+   *
+   * @param  Request  $request
+   * @return Response
+   */
+  public function store(Request $request)
+  {
+    // Создать подкаст...
+
+    $job = (new ProcessPodcast($podcast))
+                ->delay(Carbon::now()->addMinutes(10));
+
+    dispatch($job);
+  }
+}
+
+
+Например, вы захотите поместить в очередь задачу, которая отправляет пользователю e-mail через 5 минут после регистрации:
+
+PHP
+<?php
+
+namespace App\Http\Controllers;
+
+use App\User;
+use Illuminate\Http\Request;
+use App\Jobs\SendReminderEmail;
+use App\Http\Controllers\Controller;
+
+class UserController extends Controller
+{
+  /**
+   * Отправить уведомление на e-mail данному пользователю.
+   *
+   * @param  Request  $request
+   * @param  int  $id
+   * @return Response
+   */
+  public function sendReminderEmail(Request $request, $id)
+  {
+    $user = User::findOrFail($id);
+
+    $job = (new SendReminderEmail($user))->delay(60 * 5);
+
+    $this->dispatch($job);
+  }
+}
+
+
+
+ public function destroy(User $user, Product $product) {
+        return ($user->canDo('DELETE_PROD')  && $user->id == $product->user_id);  кто и создал продукт
+    }
+
+   php artisan config:cache
+
+     php artisan serve
+
+     php artisan queue:work

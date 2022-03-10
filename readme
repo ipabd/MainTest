@@ -1,0 +1,7 @@
+1.В Docker web  выполнить
+docker-compose up --build
+2.после установки  импортировать в PostGreSql -Laravel.sql
+
+
+
+
