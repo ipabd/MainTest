@@ -35,6 +35,6 @@ services:
     - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
     working_dir:
       '/var/www/html/'
-    command: composer self-update
+    command: composer install --ignore-platform-reqs
 
 
