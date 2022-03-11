@@ -34,9 +34,9 @@
                                         <a title="Карточка" href="{{ route('product', ['id' => $prod->id]) }}"><span
                                                     class="glyphicon glyphicon-credit-card"></span></a>
                                     </td>
-                                    <td>{{ $prod->ARTICLE }}</td>
-                                    <td>{{ $prod->NAME }}</td>
-                                    <td>{{ $prod->STATUS }}</td>
+                                    <td>{{ $prod->article }}</td>
+                                    <td>{{ $prod->name }}</td>
+                                    <td>{{ $prod->status }}</td>
                                     @if (!empty($data[$i]))
                                         <td>
                                             <div id="atrib">
