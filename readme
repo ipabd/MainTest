@@ -1,7 +1,7 @@
 1.В Docker развернуть
   в терминале проекта  выполнить  docker-compose up --build
-2.После установки   в Docker- adminer-cli (доступ в PostGreSql) (user postgres password postgres) создать пустую бд имя - Laravel
-и в Docker- adminer-web-cli выполнить php artisan migrate
+2.После установки   в Docker- adminer-open in browser (доступ в PostGreSql) (user postgres password postgres) создать пустую бд имя - Laravel
+и в Docker- web-cli выполнить php artisan migrate
 3.Войти в приложение Docker- adminer-web-open in browser и зарегистрировать пользователей с логинами для проверки опций.
   admin    добавление,редактирование,удаление
   user     просмотр
@@ -12,6 +12,3 @@
  в Docker- adminer-web-cli  
  php artisan queue:work  --queue="newprod"
  и будет опрос очередей 
-
-
-
