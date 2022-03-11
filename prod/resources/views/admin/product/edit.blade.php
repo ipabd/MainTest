@@ -35,32 +35,32 @@
                             @method('PUT')
                             <div class="form-group">
                                 <label style="font-size: 9px;line-height: 11px;color: #FFFFFF;">Артикул</label>
-                                <input id="ARTICLE" type="text"
-                                       class="form-control @error('ARTICLE') is-invalid @enderror" name="ARTICLE"
-                                       value="{{ $product->ARTICLE}}" {{$readonl}}  required autocomplete="ARTICLE"
+                                <input id="article" type="text"
+                                       class="form-control @error('article') is-invalid @enderror" name="article"
+                                       value="{{ $product->article}}" {{$readonl}}  required autocomplete="article"
                                        autofocus>
-                                @error('ARTICLE')
+                                @error('article')
                                 <span> <strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
 
                             <div class="form-group">
                                 <label style="font-size: 9px;line-height: 11px;color: #FFFFFF;">Название</label>
-                                <input id="NAME" type="text" class="form-control @error('NAME') is-invalid @enderror"
-                                       name="NAME"
-                                       value="{{ $product->NAME}}" required autocomplete="NAME" autofocus>
-                                @error('NAME')
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                       name="name"
+                                       value="{{ $product->name}}" required autocomplete="name" autofocus>
+                                @error('name')
                                 <span> <strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
 
                             <div class="form-group">
                                 <label style="font-size: 9px;line-height: 11px;color: #FFFFFF;">Статус</label>
-                                <select class="form-control @error('STATUS') is-invalid @enderror" id="STATUS"
-                                        name="STATUS">
+                                <select class="form-control @error('status') is-invalid @enderror" id="status"
+                                        name="status">
                                     @foreach($status as $k => $v)
-                                        <option value="{{  $v->STATUS }}"
-                                                @if($v->STATUS == $product->STATUS) selected @endif>{{ $v->NAME }}</option>
+                                        <option value="{{  $v->status }}"
+                                                @if($v->status == $product->status) selected @endif>{{ $v->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -72,9 +72,9 @@
                                     @if (!empty($data))
                                         @foreach($data as $dat)
                                             <tr>
-                                                <td><input type="text" name="NAM[{{$n}}]" value="{{  $dat[0]}}"
+                                                <td><input type="text" name="nam[{{$n}}]" value="{{  $dat[0]}}"
                                                            class="form-control"/></td>
-                                                <td><input type="text" name="ZN[{{$n}}]" value="{{  $dat[1]}}"
+                                                <td><input type="text" name="zn[{{$n}}]" value="{{  $dat[1]}}"
                                                            class="form-control"/></td>
                                                 <td><a type="button" data-i="{{$n}}" id="del"><span
                                                                 class="glyphicon glyphicon-remove"></span></a></td>
@@ -116,9 +116,9 @@
                 '</tr>'
                 +
                 '<tr >' +
-                '<td><input type="text" name="NAM[' + i + ']" ' +
+                '<td><input type="text" name="nam[' + i + ']" ' +
                 ' class="form-control" /></td>' +
-                '<td><input type="text" name="ZN[' + i + ']" ' +
+                '<td><input type="text" name="zn[' + i + ']" ' +
                 ' class="form-control" /></td>' +
                 '<td><a type="button" data-i="' + i + '" id="del"><span class="glyphicon glyphicon-remove"></span></a></td>' +
                 '</tr>');
