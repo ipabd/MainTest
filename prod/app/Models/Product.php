@@ -9,12 +9,12 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['ARTICLE', 'NAME', 'STATUS', 'DATA'];
+    protected $fillable = ['article', 'name', 'status', 'data'];
 
 
     public function scopeStatus($query)
     {
-        return $query->where('STATUS', '=', 'available');
+        return $query->where('status', '=', 'available');
     }
 
 }
