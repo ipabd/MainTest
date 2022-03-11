@@ -109,7 +109,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|min:10',
-            'article' => 'required|string|max:255|regex:/^[A-Za-z0-9]+$/',
+            'article' => 'required|string|max:255|regex:/^[A-Za-z0-9]+$/|',
         ]);
         if (!empty($request->nam)) {
             foreach ($request->nam as $i => $v) {
