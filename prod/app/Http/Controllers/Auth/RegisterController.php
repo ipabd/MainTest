@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use function Psy\debug;
 
 class RegisterController extends Controller
@@ -65,6 +66,19 @@ class RegisterController extends Controller
             'login' => $request->login,
             'password' => bcrypt($request->password),
         ]);
+
+        $role=3;  ///для проверки ввиду отсутствия админки
+        if ($user->name=='admin') $role=1;
+            elseif ($user->name=='moder') $role=2;
+        DB::beginTransaction();
+        try {
+            DB::insert("INSERT INTO role_user (user_id,role_id) values (?,?)", [ $user->id, $role]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            echo $e->getMessage();
+        }
+
         session()->flash('success', 'Регистрация пройдена');
         Auth::login($user);
         return redirect()->home();
