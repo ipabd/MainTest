@@ -35,30 +35,30 @@
 
                             <div class="form-group">
                                 <label style="font-size: 9px;line-height: 11px;color: #FFFFFF;">Артикул</label>
-                                <input id="ARTICLE" type="text"
-                                       class="form-control @error('ARTICLE') is-invalid @enderror" name="ARTICLE"
-                                       value="{{ old('ARTICLE') }}" required autocomplete="ARTICLE" autofocus>
-                                @error('ARTICLE')
+                                <input id="article" type="text"
+                                       class="form-control @error('article') is-invalid @enderror" name="article"
+                                       value="{{ old('article') }}" required autocomplete="article" autofocus>
+                                @error('article')
                                 <span> <strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
 
                             <div class="form-group">
                                 <label style="font-size: 9px;line-height: 11px;color: #FFFFFF;">Название</label>
-                                <input id="NAME" type="text" class="form-control @error('NAME') is-invalid @enderror"
-                                       name="NAME"
-                                       value="{{ old('NAME') }}" required autocomplete="NAME" autofocus>
-                                @error('NAME')
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                       name="name"
+                                       value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                @error('name')
                                 <span> <strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
 
                             <div class="form-group">
                                 <label style="font-size: 9px;line-height: 11px;color: #FFFFFF;">Статус</label>
-                                <select class="form-control @error('STATUS') is-invalid @enderror" id="STATUS"
-                                        name="STATUS">
+                                <select class="form-control @error('status') is-invalid @enderror" id="status"
+                                        name="status">
                                     @foreach($status as $k => $v)
-                                        <option value="{{ $v->STATUS }}" selected>{{ $v->NAME }}</option>
+                                        <option value="{{ $v->status }}" selected>{{ $v->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -99,9 +99,9 @@
                 '</tr>'
                 +
                 '<tr >' +
-                '<td><input type="text" name="NAM[' + i + ']" ' +
+                '<td><input type="text" name="nam[' + i + ']" ' +
                 ' class="form-control" /></td>' +
-                '<td><input type="text" name="ZN[' + i + ']" ' +
+                '<td><input type="text" name="zn[' + i + ']" ' +
                 ' class="form-control" /></td>' +
                 '<td><a type="button" data-i="' + i + '" id="del"><span class="glyphicon glyphicon-remove"></span></a></td>' +
                 '</tr>');
