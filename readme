@@ -1,7 +1,7 @@
 1.В Docker развернуть
    терминале проекта  выполнить  docker-compose up --build
 2.После установки   в PostGreSql (user postgres password postgres) создать пустую бд Laravel
-и импортировать-Laravel.sql в корне проекта
+и в терминате проекта выполнить php artisan migrate
 3.Зарегистрировать пользователей с логинами для проверки опций.
   admin    добавление,редактирование,удаление
   user     просмотр
