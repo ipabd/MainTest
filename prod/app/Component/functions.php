@@ -1,5 +1,14 @@
 <?php
 
+function onmsql($arr){
+    $tab = [];
+    if (!empty($arr[0])) {
+        $tab= $arr[0];
+    }
+    return $tab;
+}
+
+
 function deb($arr, $die = false)
 {
     echo '<pre>' . print_r($arr, true) . '</pre>';
