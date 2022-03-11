@@ -16,20 +16,20 @@
             <div class="container">
                 <div class="col-md-10">
                     <div style="width: 60%" id="tab">
-                        <label for="title">{{$product->NAME}}</label>
+                        <label for="title">{{$product->name}}</label>
                         <table style="font-size: 11px;color: #FFFFFF;">
                             <tbody style="font-size: 9px;line-height: 11px;">
                             <tr>
                                 <td>АРТИКУЛ</td>
-                                <td>{{ $product->ARTICLE }}</td>
+                                <td>{{ $product->article }}</td>
                             </tr>
                             <tr>
                                 <td>СТАТУС</td>
-                                <td>{{ $product->STATUS }}</td>
+                                <td>{{ $product->status}}</td>
                             </tr>
                             <tr>
                                 <td>НАЗВАНИЕ</td>
-                                <td>{{ $product->NAME }}</td>
+                                <td>{{ $product->name}}</td>
                             </tr>
                             @if (!empty($data))
                                 <tr>
