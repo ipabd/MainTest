@@ -15,8 +15,8 @@ class CreateStatusesTable extends Migration
     {
         Schema::create('statuses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('NAME', 255);
-            $table->enum('STATUS', ['available', 'unavailable']);
+            $table->string('name', 255);
+            $table->enum('status', ['available', 'unavailable']);
             $table->timestamps();
         });
     }
