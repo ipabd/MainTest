@@ -44,29 +44,31 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'NAME' => 'required|unique:products|min:10',
-            'ARTICLE' => 'required|string|max:255|regex:/^[A-Za-z0-9]+$/|unique:products',
+            'name' => 'required|unique:products|min:10',
+            'article' => 'required|string|max:255|regex:/^[A-Za-z0-9]+$/|unique:products',
         ]);
 
-        if (!empty($request->NAM)) {
-            foreach ($request->NAM as $i => $v) {
-                $obj[] = [$v, $request->ZN[$i]];
+
+
+        if (!empty($request->nam)) {
+            foreach ($request->nam as $i => $v) {
+                $obj[] = [$v, $request->zn[$i]];
             }
             $obj = json_encode($obj);
         } else $obj = null;
 
         $data = [
-            'ARTICLE' => $request->ARTICLE,
-            'NAME' => $request->NAME,
-            'STATUS' => $request->STATUS,
-            'DATA' => $obj
+            'article' => $request->article,
+            'name' => $request->name,
+            'status' => $request->status,
+            'data' => $obj
         ];
         $product = Product::create($data);
         ///почта
         //return redirect()->route('send', ['prod' => $request->NAME]);
         ///через job
-        dispatch(new SendJob($request->ARTICLE))->onQueue('newprod')->delay(10);;
-        return redirect()->route('home')->with('success', "Продукт добавлен $request->NAME");
+        dispatch(new SendJob($request->article))->onQueue('newprod')->delay(10);;
+        return redirect()->route('home')->with('success', "Продукт добавлен $request->name");
     }
 
     /**
@@ -89,10 +91,10 @@ class ProductController extends Controller
 
         $product = Product::find($id);
         $status = Status::all();
-        if (!empty($product->DATA)) {
-            $data = json_decode($product->DATA);
+        if (!empty($product->data)) {
+            $data = json_decode($product->data);
             $data = object_to_array($data);
-        } else $data = $product->DATA;
+        } else $data = $product->data;
         return view('admin.product.edit', compact('product', 'status', 'data', 'readonl'));
     }
 
@@ -106,21 +108,21 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'NAME' => 'required|min:10',
-            'ARTICLE' => 'required|string|max:255|regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/i',
+            'name' => 'required|min:10',
+            'article' => 'required|string|max:255|regex:/^[A-Za-z0-9]+$/',
         ]);
-        if (!empty($request->NAM)) {
-            foreach ($request->NAM as $i => $v) {
-                $obj[] = [$v, $request->ZN[$i]];
+        if (!empty($request->nam)) {
+            foreach ($request->nam as $i => $v) {
+                $obj[] = [$v, $request->zn[$i]];
             }
             $obj = json_encode($obj);
         } else $obj = null;
 
         $data = [
-            'ARTICLE' => $request->ARTICLE,
-            'NAME' => $request->NAME,
-            'STATUS' => $request->STATUS,
-            'DATA' => $obj
+            'article' => $request->article,
+            'name' => $request->name,
+            'status' => $request->status,
+            'data' => $obj
         ];
         $product = Product::find($id);
         $product->update($data);
