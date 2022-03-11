@@ -15,10 +15,10 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('ARTICLE', 255)->unique();
-            $table->string('NAME', 255);
-            $table->enum('STATUS', ['available', 'unavailable']);
-            $table->jsonb('DATA');
+            $table->string('article', 255)->unique();
+            $table->string('name', 255);
+            $table->enum('status', ['available', 'unavailable']);
+            $table->jsonb('data');
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
         });
