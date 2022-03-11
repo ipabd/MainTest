@@ -1,6 +1,6 @@
 1.В Docker развернуть
    терминале проекта  выполнить  docker-compose up --build
-2.После установки   в PostGreSql создать пустую бд Laravel
+2.После установки   в PostGreSql (user postgres password postgres) создать пустую бд Laravel
 и импортировать-Laravel.sql в корне проекта
 3.Зарегистрированные пользователи с правами для проверки опций.
   admin 111
